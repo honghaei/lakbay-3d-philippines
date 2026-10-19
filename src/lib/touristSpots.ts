@@ -1,0 +1,155 @@
+/**
+ * Initial, manually curated Lakbay demo destinations.
+ * longitude/latitude are decimal degrees from the sources below.
+ * These are not an exhaustive list. Expand through the moderated database later.
+ */
+export type TouristSpot = {
+  id: string;
+  name: string;
+  province: string;
+  city?: string;
+  category: "Nature" | "History" | "Culture" | "Adventure" | "Beach" | "Food";
+  longitude: number;
+  latitude: number;
+  sourceUrl: string;
+};
+
+export const TOURIST_SPOTS: TouristSpot[] = [
+  {
+    id: "barasoain-church",
+    name: "Barasoain Church",
+    province: "Bulacan",
+    category: "History",
+    longitude: 120.81232,
+    latitude: 14.84637,
+    sourceUrl: "https://mapcarta.com/W47686973",
+  },
+  {
+    id: "malolos-heritage",
+    name: "Malolos Heritage Town",
+    province: "Bulacan",
+    category: "History",
+    longitude: 120.810604,
+    latitude: 14.841795,
+    sourceUrl: "https://wiki.mwmdev.com/content/wikipedia_en_all_maxi_2024-01/A/List_of_Cultural_Properties_of_the_Philippines_in_Central_Luzon",
+  },
+  {
+    id: "miagao-church",
+    name: "Miagao Church",
+    province: "Iloilo",
+    category: "History",
+    longitude: 122.2354,
+    latitude: 10.6419,
+    sourceUrl: "https://mapcarta.com/W186076787",
+  },
+  {
+    id: "molo-church",
+    name: "Molo Church",
+    province: "Iloilo",
+    category: "History",
+    longitude: 122.54479,
+    latitude: 10.69743,
+    sourceUrl: "https://mapcarta.com/W170832522",
+  },
+  {
+    id: "cagbalete-island",
+    name: "Cagbalete Island",
+    province: "Quezon",
+    category: "Beach",
+    longitude: 121.82576,
+    latitude: 14.28313,
+    sourceUrl: "https://mapcarta.com/15789576",
+  },
+  {
+    id: "kamay-ni-hesus",
+    name: "Kamay ni Hesus",
+    province: "Quezon",
+    category: "Culture",
+    longitude: 121.57301,
+    latitude: 14.10184,
+    sourceUrl: "https://mapcarta.com/W319193767",
+  },
+  {
+    id: "pinto-art-museum",
+    name: "Pinto Art Museum",
+    province: "Rizal",
+    category: "Culture",
+    longitude: 121.1637,
+    latitude: 14.58112,
+    sourceUrl: "https://mapcarta.com/32701002",
+  },
+  {
+    id: "hinulugang-taktak",
+    name: "Hinulugang Taktak",
+    province: "Rizal",
+    category: "Nature",
+    longitude: 121.16766,
+    latitude: 14.59468,
+    sourceUrl: "https://mapcarta.com/N281878155",
+  },
+  {
+    id: "taal-volcano",
+    name: "Taal Volcano",
+    province: "Batangas",
+    category: "Nature",
+    longitude: 120.99812,
+    latitude: 14.01024,
+    sourceUrl: "https://www.phivolcs.dost.gov.ph/volcanoes-of-the-philippines-2/",
+  },
+  {
+    id: "mayon-volcano",
+    name: "Mayon Volcano",
+    province: "Albay",
+    category: "Nature",
+    longitude: 123.68615,
+    latitude: 13.25519,
+    sourceUrl: "https://www.phivolcs.dost.gov.ph/volcanoes-of-the-philippines-2/",
+  },
+  {
+    id: "kawasan-falls",
+    name: "Kawasan Falls",
+    province: "Cebu",
+    category: "Adventure",
+    longitude: 123.37394,
+    latitude: 9.802,
+    sourceUrl: "https://mapcarta.com/N2503547854",
+  },
+  {
+    id: "chocolate-hills",
+    name: "Chocolate Hills",
+    province: "Bohol",
+    category: "Nature",
+    longitude: 124.1684,
+    latitude: 9.79828,
+    sourceUrl: "https://mapcarta.com/26230232",
+  },
+  {
+    id: "puerto-princesa-river",
+    name: "Puerto Princesa Subterranean River",
+    province: "Palawan",
+    category: "Nature",
+    longitude: 118.91148,
+    latitude: 10.15873,
+    sourceUrl: "https://mapcarta.com/26230170",
+  },
+  {
+    id: "rizal-park",
+    name: "Rizal Park",
+    province: "Metro Manila",
+    city: "Manila",
+    category: "History",
+    longitude: 120.97814,
+    latitude: 14.58238,
+    sourceUrl: "https://mapcarta.com/32062832",
+  },
+  {
+    id: "quezon-memorial-circle",
+    name: "Quezon Memorial Circle",
+    province: "Metro Manila",
+    city: "Quezon City",
+    category: "History",
+    longitude: 121.0493,
+    latitude: 14.6515,
+    sourceUrl: "https://mapcarta.com/Quezon_Memorial_Circle",
+  },
+];

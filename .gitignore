@@ -39,3 +39,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/public/cesium/
+
+
+# Lakbay local research and review reports
+/reports/
+
+
+# Lakbay local research reports
+/reports/
+
+# OpenStreetMap import cache
+/scripts/lakbay/.osm-cache/
+
+# Local import progress
+/scripts/lakbay/.lakbay-import-state.json
+
+# Temporary script backups
+/scripts/lakbay/*.backup-*
