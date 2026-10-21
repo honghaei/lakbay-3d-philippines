@@ -18,6 +18,40 @@ The project aims to make Philippine geographic exploration more engaging while g
 
 > **Data integrity:** Lakbay's nationwide OpenStreetMap imports contain *research candidates*, not a fully verified directory. An imported record is not automatically an approved tourist attraction. Human review of the larger research collection is ongoing.
 
+## Application Screenshots
+
+The screenshots below are from the actual deployed Lakbay application and are also used in the [portfolio case study](https://charles-lat.netlify.app/project/lakbay-3d-philippines-tourism-map).
+
+### 1. Interactive 3D Philippines Tourism Map
+
+![Nationwide interactive 3D map of the Philippines in Lakbay](https://charles-lat.netlify.app/projects/lakbay/01-nationwide-3d-philippines-map.webp)
+
+*The full-country CesiumJS map with province borders, navigation controls, and tourism discovery interface.*
+
+### 2. Province Exploration & Destination Discovery
+
+![Lakbay Palawan province view with Puerto Princesa Underground River preview](https://charles-lat.netlify.app/projects/lakbay/02-palawan-destination-discovery.webp)
+
+*A focused map view demonstrating province navigation and destination previews.*
+
+### 3. Historical Destination Profile
+
+![Lakbay Barasoain Church destination page with description and photo gallery](https://charles-lat.netlify.app/projects/lakbay/03-barasoain-church-destination.webp)
+
+*A destination profile showing cultural and historical information alongside photography.*
+
+### 4. Destination Details & Photo Gallery
+
+![Lakbay Puerto Princesa Underground River destination details with image gallery](https://charles-lat.netlify.app/projects/lakbay/04-puerto-princesa-photo-gallery.webp)
+
+*An attraction-specific detail page showing the redesigned layout and credited photographs.*
+
+### 5. Personal Travel Wishlist
+
+![Lakbay personal wishlist with Barasoain Church and Puerto Princesa Underground River cards](https://charles-lat.netlify.app/projects/lakbay/05-personal-travel-wishlist.webp)
+
+*Saved destinations presented with photographs, descriptions, and actions.*
+
 ## Features
 
 - **Interactive 3D Philippines map:** Explore national terrain and imagery with CesiumJS/Cesium ion.
