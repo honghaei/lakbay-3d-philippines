@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import type { CSSProperties } from "react";
 import { useFavorites } from "@/lib/favorites";
 import { TOURIST_SPOTS, type TouristSpot } from "@/lib/touristSpots";
 import { getDestinationDetails } from "@/lib/destinationDetails";
@@ -31,7 +30,7 @@ function DestinationCover({ spot }: { spot: TouristSpot }) {
   }, [curated, spot.id]);
 
   return (
-    <div className="relative aspect-[16/9] overflow-hidden rounded-t-2xl bg-[#183452]">
+    <div className="lb-savedCover relative aspect-[16/9] overflow-hidden rounded-t-2xl bg-[#183452]">
       {photo && !broken ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -65,57 +64,54 @@ export default function FavoritesPage() {
   );
 
   return (
-    <main
-      className="lb-site"
-      style={{
-        "--lb-scene-image": 'url("https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Kayangan_Lake%2C_Coron_-_Palawan.jpg/1280px-Kayangan_Lake%2C_Coron_-_Palawan.jpg")',
-      } as CSSProperties}
-    >
-      <LakbayPageNav />
-
-      <section className={`${"lb-pageHero"} ${"lb-wishlistHero"}`} aria-labelledby="wishlist-heading">
+    <main className="lb-site lb-wishlistPage">
+      {/* One image layer stays fixed behind the entire wishlist, without any repeated sections. */}
+      <div className="lb-wishlistScene" aria-hidden="true">
         {/* Scenic photo by Theglennpalacio, Wikimedia Commons, CC BY-SA 4.0. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="lb-pageHeroImage"
           src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Kayangan_Lake%2C_Coron_-_Palawan.jpg/1280px-Kayangan_Lake%2C_Coron_-_Palawan.jpg"
           alt=""
-          loading="lazy"
         />
-        <div className="lb-pageHeroOverlay" />
-        <div className={`${"lb-container"} ${"lb-pageHeroContent"}`}>
-          <div className="lb-wishlistTopRow">
-            <div className="lb-pageHeroCopy">
+      </div>
+      <LakbayPageNav />
+
+      <div className="lb-wishlistContent">
+        <div className="lb-container">
+          <header className="lb-wishlistDashboardHead">
+            <div className="lb-wishlistIntroduction">
               <p className="lb-heroKicker">YOUR PERSONAL TRAVEL COLLECTION</p>
               <h1 id="wishlist-heading">My Wishlist <em>({count})</em></h1>
               <p className="lb-heroSubtitle">
-                Save the places that inspire you, from storied landmarks to beautiful island escapes.
+                Keep your favorite destinations in one place and come back whenever inspiration strikes.
               </p>
-              <Link href="/" className="lb-goldButton">Find more places ↗</Link>
             </div>
-            {count > 0 && (
-              <div className="lb-wishlistSearch">
-                <label htmlFor="wishlist-search">Search your saved places</label>
-                <input
-                  id="wishlist-search"
-                  type="search"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search destinations..."
-                />
-              </div>
-            )}
-          </div>
-        </div>
-        <span className="lb-heroAttribution">
-          Photo: Theglennpalacio · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> · displayed cropped · <a href="https://commons.wikimedia.org/wiki/File:Kayangan_Lake,_Coron_-_Palawan.jpg" target="_blank" rel="noopener noreferrer">source ↗</a>
-        </span>
-      </section>
+            <Link href="/" className="lb-goldButton lb-wishlistExplore">Explore 3D Map ↗</Link>
+          </header>
 
-      <div className="lb-pageBody">
-        <div className="lb-container">
-          <p className="lb-sectionKicker">KEEP THE WANDERLUST ALIVE</p>
-          <h2 className="lb-sectionHeading">Places you want to explore</h2>
+          <section className="lb-wishlistOverview" aria-labelledby="saved-places-heading">
+            <div className="lb-wishlistOverviewTitle">
+              <p className="lb-sectionKicker">KEEP THE WANDERLUST ALIVE</p>
+              <h2 id="saved-places-heading">Places you want to explore</h2>
+              <p>Memorable places, collected for your next Philippine adventure.</p>
+            </div>
+            <div className="lb-wishlistHeaderTools">
+              <span className="lb-wishlistCountBadge">{count} saved {count === 1 ? "place" : "places"}</span>
+              {count > 0 && (
+                <div className="lb-wishlistSearch">
+                  <label htmlFor="wishlist-search">Search your saved places</label>
+                  <input
+                    id="wishlist-search"
+                    type="search"
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    placeholder="Search destinations..."
+                  />
+                </div>
+              )}
+            </div>
+          </section>
+
           {count === 0 ? (
             <div className="lb-emptyState">
               <div style={{ fontSize: 42, color: "#ffd774" }} aria-hidden="true">♡</div>
@@ -124,9 +120,15 @@ export default function FavoritesPage() {
               <Link href="/" className="lb-goldButton">Explore the Philippines →</Link>
             </div>
           ) : visible.length === 0 ? (
-            <p className="lb-emptyState">No saved places match your search.</p>
+            <div className="lb-emptyState" role="status">
+              <h2>No matching destinations</h2>
+              <p>Try another name, province, or category.</p>
+            </div>
           ) : (
-            <div className="lb-savedGrid">
+            <section
+              className={`lb-savedGrid ${visible.length === 1 ? "lb-savedGridSolo" : visible.length === 2 ? "lb-savedGridPair" : ""}`}
+              aria-label="Saved destinations"
+            >
               {visible.map((spot) => (
                 <article key={spot.id} className="lb-placeCard">
                   <DestinationCover spot={spot} />
@@ -141,11 +143,15 @@ export default function FavoritesPage() {
                   </div>
                 </article>
               ))}
-            </div>
+            </section>
           )}
-          <p className="lb-muted" style={{ marginTop: 27 }}>
-            Wishlist entries are saved in this browser. Account synchronization will be added with Supabase.
-          </p>
+
+          <footer className="lb-wishlistFooter">
+            <p>Wishlist entries are saved in this browser. Account synchronization will be added with Supabase.</p>
+            <p>
+              Background photo: Theglennpalacio · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> · displayed cropped · <a href="https://commons.wikimedia.org/wiki/File:Kayangan_Lake,_Coron_-_Palawan.jpg" target="_blank" rel="noopener noreferrer">source ↗</a>
+            </p>
+          </footer>
         </div>
       </div>
     </main>
